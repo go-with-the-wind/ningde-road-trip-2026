@@ -412,6 +412,36 @@
     .day-actions { display: flex; flex-wrap: wrap; gap: .7rem; padding-top: .3rem; }
     .note-box { margin-top: 1rem; padding: 1rem; color: #74402f; background: var(--sunset-light); border-left: 3px solid var(--sunset); border-radius: 8px; font-size: .85rem; }
 
+    /* Daily hotels */
+    .hotel-slot { margin-top: 1rem; }
+    .hotel-card { padding: 1.1rem; color: var(--ink); background: var(--mist-light); border: 1px solid rgba(45,106,85,.2); border-radius: 13px; }
+    .hotel-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .hotel-card__label { display: block; color: var(--forest); font: 800 .7rem var(--mono); letter-spacing: .08em; }
+    .hotel-card h4 { margin: .3rem 0 .2rem; font-family: var(--display); font-size: 1.18rem; }
+    .hotel-card__address, .hotel-card__detail, .hotel-card__note { margin: .25rem 0 0; color: var(--rock); font-size: .83rem; }
+    .hotel-card__note { padding-top: .65rem; }
+    .hotel-card .day-actions { margin-top: .9rem; }
+    .hotel-card--empty { border-style: dashed; background: #fbfcfa; }
+    .hotel-card--empty p { margin: .35rem 0 0; color: var(--rock); font-size: .85rem; }
+    .hotel-map-marker { display: grid; place-items: center; min-width: 34px; height: 34px; padding: 0 7px; color: var(--white); background: var(--sunset); border: 3px solid var(--white); border-radius: 50%; box-shadow: 0 3px 10px rgba(18,49,59,.24); font: 800 .7rem var(--mono); }
+    .hotel-dialog { width: min(680px, calc(100% - 28px)); max-height: min(760px, calc(100vh - 28px)); padding: 0; color: var(--ink); border: 0; border-radius: 18px; box-shadow: 0 24px 70px rgba(5,26,32,.3); }
+    .hotel-dialog::backdrop { background: rgba(5,26,32,.56); backdrop-filter: blur(2px); }
+    .hotel-dialog form { display: grid; gap: 1rem; padding: 1.4rem; }
+    .hotel-dialog h2 { margin: 0; font-family: var(--display); font-size: 1.7rem; }
+    .hotel-dialog label { display: grid; gap: .38rem; color: var(--forest-dark); font-size: .84rem; font-weight: 750; }
+    .hotel-dialog input, .hotel-dialog textarea { width: 100%; box-sizing: border-box; padding: .75rem .8rem; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: 9px; font: inherit; }
+    .hotel-dialog textarea { min-height: 78px; resize: vertical; }
+    .hotel-dialog input:focus, .hotel-dialog textarea:focus { outline: 3px solid rgba(45,106,85,.18); border-color: var(--forest); }
+    .hotel-dialog__hint, .hotel-dialog__status { margin: 0; color: var(--rock); font-size: .8rem; }
+    .hotel-dialog__status:not(:empty) { padding: .7rem .8rem; color: var(--forest-dark); background: var(--mist-light); border-radius: 8px; }
+    .hotel-poi-results { display: grid; gap: .55rem; max-height: 245px; overflow: auto; }
+    .hotel-poi-result { width: 100%; padding: .75rem; text-align: left; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: 9px; cursor: pointer; }
+    .hotel-poi-result:hover, .hotel-poi-result:focus-visible { border-color: var(--forest); background: var(--mist-light); outline: 0; }
+    .hotel-poi-result strong, .hotel-poi-result small { display: block; }
+    .hotel-poi-result small { margin-top: .22rem; color: var(--rock); }
+    .hotel-dialog__actions { display: flex; flex-wrap: wrap; gap: .7rem; padding-top: .2rem; }
+    .hotel-dialog__actions .btn[disabled] { cursor: not-allowed; opacity: .48; }
+
     /* Food */
     .food-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
     .food-card { position: relative; min-height: 345px; display: flex; flex-direction: column; padding: 1.35rem; background: var(--white); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
@@ -745,6 +775,7 @@
                   <li><time>21:00—23:30</time><div><strong>抵达蚂蚁窝酒店</strong><p>山路降速、不开远光追车；若酒店无法确认夜间通行或天气恶化，立即执行县城住宿备选。</p></div></li>
                 </ol>
                 <div class="note-box"><strong>酒店与停车：</strong>高德POI“永泰云顶蚂蚁窝蛋居民宿”，地址：岭路乡长坑村187县道天池景区正对面。高德登记电话：<a href="tel:059124769999">0591-24769999</a>、<a href="tel:13774600034">137 7460 0034</a>（来自高德POI，出发前请用订单电话核实）。高德显示最近停车场：云顶旅游度假区天池景区停车场（距POI约21 m），未说明是否对住客开放或可夜间停放，以酒店通知为准。中国云顶景区咨询：<a href="tel:059188001601">0591-88001601</a>（非酒店前台）。</div>
+                <section class="hotel-slot" data-hotel-night="d1" aria-label="D1 酒店安排"></section>
                 <div class="day-actions">
                   <button class="btn btn--small btn--primary map-focus" type="button" data-stop="yunding" aria-label="在地图上定位永泰云顶蚂蚁窝蛋居民宿高德POI位置">地图定位</button>
                   <a class="btn btn--small btn--secondary" href="https://uri.amap.com/navigation?from=118.094377,24.477153,厦门&amp;to=118.99915,25.76683,永泰云顶蚂蚁窝蛋居民宿&amp;mode=car&amp;policy=1&amp;src=ningde-road-trip-2026&amp;coordinate=gaode&amp;callnative=0" target="_blank" rel="noopener noreferrer">高德导航到酒店</a>
@@ -771,6 +802,7 @@
                   <li><time>16:00—17:30</time><div><strong>入住屏南县城</strong><p>当天不再加古村或白水洋，晚餐尝试鸳鸯面、扁肉等热食。</p></div></li>
                 </ol>
                 <div class="note-box"><strong>硬性取舍：</strong>11:30未离开云顶就继续删减，不在傍晚进入屏南山路；云顶遇雨雾或大排队时直接取消。</div>
+                <section class="hotel-slot" data-hotel-night="d2" aria-label="D2 酒店安排"></section>
                 <div class="day-actions">
                   <button class="btn btn--small btn--primary map-focus" type="button" data-stop="pingnan" aria-label="在地图上定位屏南">地图定位</button>
                   <a class="btn btn--small btn--secondary" href="https://uri.amap.com/navigation?from=&amp;to=119.008864,26.901402,屏南县城&amp;mode=car&amp;policy=1&amp;src=ningde-road-trip-2026&amp;coordinate=gaode&amp;callnative=0" target="_blank" rel="noopener noreferrer">当前位置→屏南</a>
@@ -794,6 +826,7 @@
                   <li><time>12:30</time><div><strong>午餐与短休</strong><p>最迟14:00—14:30离开四坪，确保白天完成前往周宁的山路转场。</p></div></li>
                   <li><time>16:00—17:00</time><div><strong>入住周宁县城</strong><p>周宁连住两晚，当天不加景点；向住宿方核实施工、蝙蝠洞开放和次日道路。</p></div></li>
                 </ol>
+                <section class="hotel-slot" data-hotel-night="d3" aria-label="D3 酒店安排"></section>
                 <div class="day-actions">
                   <button class="btn btn--small btn--primary map-focus" type="button" data-stop="pingnan" aria-label="在地图上定位屏南">地图定位</button>
                   <a class="btn btn--small btn--secondary" href="https://uri.amap.com/navigation?from=&amp;to=119.075168,26.772159,龙潭村&amp;mode=car&amp;policy=1&amp;src=ningde-road-trip-2026&amp;coordinate=gaode&amp;callnative=0" target="_blank" rel="noopener noreferrer">当前位置→龙潭</a>
@@ -819,6 +852,7 @@
                   <li><time>13:30—15:30</time><div><strong>仙风山近端短线</strong><p>只走合法停车点附近60—90分钟森林/观景短线，不登主峰、不走施工便道。</p></div></li>
                   <li><time>16:00—16:30</time><div><strong>最迟离山</strong><p>回周宁县城休息并准备返程；任一处延误，另一处只做入口附近短停。</p></div></li>
                 </ol>
+                <section class="hotel-slot" data-hotel-night="d4" aria-label="D4 酒店安排"></section>
                 <div class="day-actions">
                   <button class="btn btn--small btn--primary map-focus" type="button" data-stop="zhouning" aria-label="在地图上定位周宁">地图定位</button>
                   <a class="btn btn--small btn--secondary" href="https://uri.amap.com/navigation?from=&amp;to=119.180769,27.015771,蝙蝠洞&amp;mode=car&amp;policy=1&amp;src=ningde-road-trip-2026&amp;coordinate=gaode&amp;callnative=0" target="_blank" rel="noopener noreferrer">当前位置→蝙蝠洞</a>
@@ -1016,6 +1050,23 @@
     </section>
   </main>
 
+  <dialog class="hotel-dialog" id="hotel-dialog" aria-labelledby="hotel-dialog-title">
+    <form id="hotel-form" novalidate>
+      <h2 id="hotel-dialog-title">添加今晚酒店</h2>
+      <p class="hotel-dialog__hint">先查询并选择高德 POI，才能生成精确导航。酒店资料只保存在当前浏览器，不会写回 GitHub。</p>
+      <label>酒店名称<input id="hotel-name" type="text" required autocomplete="organization" placeholder="例如：周宁某某酒店"></label>
+      <label>所在城市<input id="hotel-city" type="text" required autocomplete="address-level2" placeholder="例如：周宁"></label>
+      <label>备注（可选）<textarea id="hotel-note" placeholder="例如：停车以订单联系人通知为准"></textarea></label>
+      <p class="hotel-dialog__status" id="hotel-search-status" aria-live="polite"></p>
+      <div class="hotel-poi-results" id="hotel-poi-results" aria-live="polite"></div>
+      <div class="hotel-dialog__actions">
+        <button class="btn btn--secondary btn--small" type="button" id="hotel-search">查询高德 POI</button>
+        <button class="btn btn--primary btn--small" type="submit" id="hotel-save" disabled>保存酒店</button>
+        <button class="btn btn--secondary btn--small" type="button" id="hotel-cancel">取消</button>
+      </div>
+    </form>
+  </dialog>
+
   <footer class="footer">
     <div class="shell"><span>山海路书 · 厦门—永泰—屏南—周宁</span><span>规划更新：2026-09-29 · <span id="footer-year">2026</span></span></div>
   </footer>
@@ -1203,6 +1254,325 @@
       const locationTitle = document.getElementById('location-title');
       const locationDetail = document.getElementById('location-detail');
       const locateButton = document.getElementById('locate-button');
+
+      /* daily-hotel-data */
+      const HOTEL_STORAGE_KEY = 'ningde-road-trip-2026.hotels.v1';
+      const HOTEL_NIGHTS = Object.freeze([
+        {
+          id: 'd1', day: 'D1', date: '2026-10-01', city: '永泰', label: '10月1日 · 云顶',
+          defaultHotel: {
+            name: '永泰云顶蚂蚁窝蛋居民宿', address: '岭路乡长坑村187县道天池景区正对面', poiId: 'B0FFH8F056',
+            lng: 118.99915, lat: 25.76683, tel: '0591-24769999；13774600034', note: '最终入口和停车以订单联系人为准。'
+          }
+        },
+        { id: 'd2', day: 'D2', date: '2026-10-02', city: '屏南', label: '10月2日 · 屏南', defaultHotel: null },
+        { id: 'd3', day: 'D3', date: '2026-10-03', city: '周宁', label: '10月3日 · 周宁', defaultHotel: null },
+        { id: 'd4', day: 'D4', date: '2026-10-04', city: '周宁', label: '10月4日 · 周宁', defaultHotel: null }
+      ]);
+      const hotelNightById = new Map(HOTEL_NIGHTS.map(night => [night.id, night]));
+      const hotelMarkers = new Map();
+      let hotels = loadHotels();
+      let hotelStorageWarning = '';
+
+      function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>'"]/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character]);
+      }
+
+      function validHotelCoordinates(lng, lat) {
+        return Number.isFinite(lng) && Number.isFinite(lat) && lng >= -180 && lng <= 180 && lat >= -90 && lat <= 90;
+      }
+
+      function normalizeHotel(value, city) {
+        if (!value || typeof value.name !== 'string' || !value.name.trim()) return null;
+        const lng = value.lng === null || value.lng === undefined || value.lng === '' ? NaN : Number(value.lng);
+        const lat = value.lat === null || value.lat === undefined || value.lat === '' ? NaN : Number(value.lat);
+        return {
+          name: value.name.trim(),
+          city: typeof value.city === 'string' && value.city.trim() ? value.city.trim() : city,
+          address: typeof value.address === 'string' ? value.address.trim() : '',
+          poiId: typeof value.poiId === 'string' ? value.poiId.trim() : '',
+          lng: validHotelCoordinates(lng, lat) ? lng : null,
+          lat: validHotelCoordinates(lng, lat) ? lat : null,
+          tel: typeof value.tel === 'string' ? value.tel.trim() : '',
+          note: typeof value.note === 'string' ? value.note.trim() : ''
+        };
+      }
+
+      function defaultHotels() {
+        return Object.fromEntries(HOTEL_NIGHTS.map(night => [night.id, normalizeHotel(night.defaultHotel, night.city)]));
+      }
+
+      function loadHotels() {
+        const defaults = defaultHotels();
+        try {
+          const stored = JSON.parse(window.localStorage.getItem(HOTEL_STORAGE_KEY));
+          if (!stored || stored.version !== 1 || !stored.nights || typeof stored.nights !== 'object') return defaults;
+          HOTEL_NIGHTS.forEach(night => {
+            if (Object.prototype.hasOwnProperty.call(stored.nights, night.id)) {
+              defaults[night.id] = normalizeHotel(stored.nights[night.id], night.city);
+            }
+          });
+        } catch (error) {
+          console.warn('Stored hotels unavailable:', error);
+        }
+        return defaults;
+      }
+
+      function saveHotels() {
+        try {
+          window.localStorage.setItem(HOTEL_STORAGE_KEY, JSON.stringify({ version: 1, nights: hotels }));
+          hotelStorageWarning = '';
+          return true;
+        } catch (error) {
+          console.warn('Hotel storage unavailable:', error);
+          hotelStorageWarning = '浏览器阻止了本地保存：本次页面仍会显示，刷新后可能消失。';
+          return false;
+        }
+      }
+
+      function getHotelNavigationUrl(hotel) {
+        if (!hotel || !validHotelCoordinates(hotel.lng, hotel.lat)) return null;
+        return `https://uri.amap.com/navigation?from=&to=${hotel.lng},${hotel.lat},${encodeURIComponent(hotel.name)}&mode=car&policy=1&src=ningde-road-trip-2026&coordinate=gaode&callnative=0`;
+      }
+
+      function renderHotelCard(night, hotel) {
+        const navigationUrl = getHotelNavigationUrl(hotel);
+        const details = [
+          hotel.address ? `<p class="hotel-card__address">${escapeHtml(hotel.address)}</p>` : '',
+          hotel.tel ? `<p class="hotel-card__detail">高德登记电话：${escapeHtml(hotel.tel)}</p>` : '',
+          hotel.note ? `<p class="hotel-card__detail">${escapeHtml(hotel.note)}</p>` : ''
+        ].join('');
+        return `<section class="hotel-card" aria-label="${escapeHtml(night.label)}酒店">
+          <div class="hotel-card__head"><div><span class="hotel-card__label">${escapeHtml(night.day)} · 今晚住宿</span><h4>${escapeHtml(hotel.name)}</h4></div></div>
+          ${details}
+          <div class="day-actions">
+            ${navigationUrl ? `<a class="btn btn--small btn--primary" href="${navigationUrl}" target="_blank" rel="noopener noreferrer">高德导航到酒店</a><button class="btn btn--small btn--secondary" type="button" data-hotel-action="focus" data-hotel-night-id="${night.id}">地图定位</button>` : ''}
+            <button class="btn btn--small btn--secondary" type="button" data-hotel-action="edit" data-hotel-night-id="${night.id}">编辑酒店</button>
+            <button class="btn btn--small btn--secondary" type="button" data-hotel-action="clear" data-hotel-night-id="${night.id}">清除本晚酒店</button>
+          </div>
+          <p class="hotel-card__note">仅保存到当前浏览器，不会写回 GitHub。${escapeHtml(hotelStorageWarning)}</p>
+        </section>`;
+      }
+
+      function renderEmptyHotelCard(night) {
+        const canCopyD3 = night.id === 'd4' && hotels.d3;
+        return `<section class="hotel-card hotel-card--empty" aria-label="${escapeHtml(night.label)}酒店">
+          <span class="hotel-card__label">${escapeHtml(night.day)} · 今晚住宿</span><h4>尚未添加酒店</h4>
+          <p>选择高德 POI 后可一键导航并在地图中定位。</p>
+          <div class="day-actions">
+            <button class="btn btn--small btn--primary" type="button" data-hotel-action="edit" data-hotel-night-id="${night.id}">添加酒店</button>
+            ${canCopyD3 ? `<button class="btn btn--small btn--secondary" type="button" data-hotel-action="copy-d3" data-hotel-night-id="d4">沿用 D3 酒店</button>` : ''}
+          </div>
+          <p class="hotel-card__note">仅保存到当前浏览器，不会写回 GitHub。${escapeHtml(hotelStorageWarning)}</p>
+        </section>`;
+      }
+
+      function renderHotelCards() {
+        HOTEL_NIGHTS.forEach(night => {
+          const slot = document.querySelector(`[data-hotel-night="${night.id}"]`);
+          if (slot) slot.innerHTML = hotels[night.id] ? renderHotelCard(night, hotels[night.id]) : renderEmptyHotelCard(night);
+        });
+      }
+
+      /* daily-hotel-dialog */
+      const hotelDialog = document.getElementById('hotel-dialog');
+      const hotelForm = document.getElementById('hotel-form');
+      const hotelNameInput = document.getElementById('hotel-name');
+      const hotelCityInput = document.getElementById('hotel-city');
+      const hotelNoteInput = document.getElementById('hotel-note');
+      const hotelSearchButton = document.getElementById('hotel-search');
+      const hotelSaveButton = document.getElementById('hotel-save');
+      const hotelCancelButton = document.getElementById('hotel-cancel');
+      const hotelSearchStatus = document.getElementById('hotel-search-status');
+      const hotelPoiResults = document.getElementById('hotel-poi-results');
+      let hotelEditingNightId = null;
+      let pendingHotelPoi = null;
+      let hotelPoiCandidates = [];
+      let hotelSearchGeneration = 0;
+
+      function setHotelStatus(message) {
+        hotelSearchStatus.textContent = message;
+      }
+
+      function clearHotelPoiSelection(message = '') {
+        pendingHotelPoi = null;
+        hotelSaveButton.disabled = true;
+        hotelPoiResults.innerHTML = '';
+        if (message) setHotelStatus(message);
+      }
+
+      function poiCoordinates(poi) {
+        const location = poi?.location;
+        const lng = Number(location?.lng ?? (typeof location?.getLng === 'function' ? location.getLng() : NaN));
+        const lat = Number(location?.lat ?? (typeof location?.getLat === 'function' ? location.getLat() : NaN));
+        return validHotelCoordinates(lng, lat) ? { lng, lat } : null;
+      }
+
+      function renderHotelPoiResults(pois) {
+        hotelPoiCandidates = (pois || []).filter(poi => poiCoordinates(poi));
+        if (!hotelPoiCandidates.length) {
+          hotelPoiResults.innerHTML = '<p class="hotel-dialog__hint">没有找到可用于导航的高德 POI。请核对酒店名称和城市后重试。</p>';
+          setHotelStatus('未选择酒店 POI，暂不能保存。');
+          return;
+        }
+        hotelPoiResults.innerHTML = hotelPoiCandidates.map((poi, index) => `<button class="hotel-poi-result" type="button" data-hotel-poi-index="${index}"><strong>${escapeHtml(poi.name || '未命名 POI')}</strong><small>${escapeHtml(poi.address || poi.adname || '高德未提供地址')}</small></button>`).join('');
+        setHotelStatus(`找到 ${hotelPoiCandidates.length} 个候选，请选择准确酒店。`);
+      }
+
+      function chooseHotelPoi(index) {
+        const poi = hotelPoiCandidates[index];
+        const coordinates = poiCoordinates(poi);
+        if (!poi || !coordinates) return;
+        pendingHotelPoi = {
+          name: String(poi.name || '').trim(),
+          city: hotelCityInput.value.trim(),
+          address: String(poi.address || poi.adname || '').trim(),
+          poiId: String(poi.id || '').trim(),
+          lng: coordinates.lng,
+          lat: coordinates.lat,
+          tel: String(poi.tel || '').trim(),
+          note: hotelNoteInput.value.trim()
+        };
+        hotelNameInput.value = pendingHotelPoi.name;
+        hotelSaveButton.disabled = false;
+        hotelPoiResults.innerHTML = `<p class="hotel-dialog__hint">已选：<strong>${escapeHtml(pendingHotelPoi.name)}</strong>${pendingHotelPoi.address ? ` · ${escapeHtml(pendingHotelPoi.address)}` : ''}</p>`;
+        setHotelStatus('已选择高德 POI，可以保存。');
+      }
+
+      function searchHotelPoi() {
+        const keyword = hotelNameInput.value.trim();
+        const city = hotelCityInput.value.trim();
+        clearHotelPoiSelection();
+        if (!keyword || !city) {
+          setHotelStatus('请先填写酒店名称和所在城市。');
+          return;
+        }
+        if (!window.AMap) {
+          setHotelStatus('高德地图尚未加载，暂不能查询 POI。请稍后重试。');
+          return;
+        }
+        const generation = ++hotelSearchGeneration;
+        setHotelStatus('正在查询高德 POI…');
+        try {
+          AMap.plugin('AMap.PlaceSearch', () => {
+            const service = new AMap.PlaceSearch({ city, citylimit: false, pageSize: 6, extensions: 'all' });
+            service.search(keyword, (status, result) => {
+              if (generation !== hotelSearchGeneration) return;
+              renderHotelPoiResults(status === 'complete' ? result?.poiList?.pois : []);
+            });
+          });
+        } catch (error) {
+          console.warn('Hotel POI search unavailable:', error);
+          setHotelStatus('高德 POI 查询暂时不可用，请稍后重试。');
+        }
+      }
+
+      function openHotelDialog(nightId) {
+        const night = hotelNightById.get(nightId);
+        if (!night || !hotelDialog) return;
+        hotelEditingNightId = nightId;
+        const hotel = hotels[nightId];
+        hotelForm.reset();
+        hotelNameInput.value = hotel?.name || '';
+        hotelCityInput.value = hotel?.city || night.city;
+        hotelNoteInput.value = hotel?.note || '';
+        pendingHotelPoi = hotel && validHotelCoordinates(hotel.lng, hotel.lat) ? { ...hotel } : null;
+        hotelPoiCandidates = [];
+        hotelPoiResults.innerHTML = '';
+        hotelSaveButton.disabled = !pendingHotelPoi;
+        setHotelStatus(pendingHotelPoi ? '已保留当前高德 POI；修改酒店名称或城市后请重新查询。' : '填写酒店名称和城市后查询高德 POI。');
+        document.getElementById('hotel-dialog-title').textContent = `${night.label} · ${hotel ? '编辑' : '添加'}酒店`;
+        if (typeof hotelDialog.showModal === 'function') hotelDialog.showModal();
+        else hotelDialog.setAttribute('open', '');
+        window.setTimeout(() => hotelNameInput.focus(), 0);
+      }
+
+      function closeHotelDialog() {
+        hotelSearchGeneration += 1;
+        if (typeof hotelDialog.close === 'function') hotelDialog.close();
+        else hotelDialog.removeAttribute('open');
+      }
+
+      function persistAndRenderHotels() {
+        saveHotels();
+        renderHotelCards();
+        renderHotelMapMarkers();
+      }
+
+      function clearHotel(nightId) {
+        const night = hotelNightById.get(nightId);
+        if (!night || !window.confirm(`确定清除 ${night.label} 的酒店吗？`)) return;
+        hotels[nightId] = null;
+        persistAndRenderHotels();
+      }
+
+      function copyD3Hotel() {
+        if (!hotels.d3) return;
+        hotels.d4 = { ...hotels.d3 };
+        persistAndRenderHotels();
+      }
+
+      /* daily-hotel-map */
+      function hotelInfoContent(night, hotel) {
+        return `<div class="amap-info"><span class="popup-day">${escapeHtml(night.day)} · 酒店</span><br><strong>${escapeHtml(hotel.name)}</strong><br>${escapeHtml(hotel.address || '高德 POI')}</div>`;
+      }
+
+      function clearHotelMapMarkers() {
+        hotelMarkers.forEach(marker => {
+          if (map && typeof map.remove === 'function') map.remove(marker);
+          else if (marker && typeof marker.setMap === 'function') marker.setMap(null);
+        });
+        hotelMarkers.clear();
+      }
+
+      function renderHotelMapMarkers() {
+        if (mapEngine !== 'amap' || !map || !window.AMap) return;
+        clearHotelMapMarkers();
+        HOTEL_NIGHTS.forEach((night, index) => {
+          const hotel = hotels[night.id];
+          if (!hotel || !validHotelCoordinates(hotel.lng, hotel.lat)) return;
+          const position = new AMap.LngLat(hotel.lng, hotel.lat);
+          const marker = new AMap.Marker({
+            map,
+            position,
+            title: `${night.day} 酒店 · ${hotel.name}`,
+            offset: new AMap.Pixel(-17, -17),
+            zIndex: 130,
+            content: `<div class="hotel-map-marker">H${index + 1}</div>`
+          });
+          marker.on('click', () => {
+            amapInfoWindow.setContent(hotelInfoContent(night, hotel));
+            amapInfoWindow.open(map, position);
+          });
+          hotelMarkers.set(night.id, marker);
+        });
+      }
+
+      function focusHotel(nightId) {
+        const night = hotelNightById.get(nightId);
+        const hotel = hotels[nightId];
+        if (!night || !hotel || !validHotelCoordinates(hotel.lng, hotel.lat)) return;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        locationViewLocked = false;
+        document.getElementById('map-section').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+        const applyFocus = () => {
+          if (mapEngine !== 'amap' || !map) {
+            mapStatus.textContent = '酒店已保存；地图加载后可在此定位，高德导航按钮仍可使用。';
+            mapStatus.style.display = 'block';
+            return;
+          }
+          renderHotelMapMarkers();
+          const marker = hotelMarkers.get(nightId);
+          if (!marker) return;
+          const position = marker.getPosition();
+          map.setZoomAndCenter(14, position, false, reduceMotion ? 0 : 350);
+          amapInfoWindow.setContent(hotelInfoContent(night, hotel));
+          amapInfoWindow.open(map, position);
+        };
+        const scheduleFocus = () => window.setTimeout(applyFocus, 320);
+        if (mapEngine.startsWith('loading') && mapReadyPromise) mapReadyPromise.then(scheduleFocus, scheduleFocus);
+        else scheduleFocus();
+      }
 
       function loadLeafletAssets() {
         if (window.L) return Promise.resolve(window.L);
@@ -1805,6 +2175,7 @@
           markers.set(stop.id, marker);
           amapOverlays.push(marker);
         });
+        renderHotelMapMarkers();
         drawAmapRoutes();
       }
 
@@ -1937,8 +2308,51 @@
         else scheduleFocus();
       }
 
+      const itinerary = document.getElementById('itinerary');
+      itinerary.addEventListener('click', event => {
+        const action = event.target.closest('[data-hotel-action]');
+        if (!action) return;
+        const nightId = action.dataset.hotelNightId;
+        if (action.dataset.hotelAction === 'edit') openHotelDialog(nightId);
+        if (action.dataset.hotelAction === 'focus') focusHotel(nightId);
+        if (action.dataset.hotelAction === 'clear') clearHotel(nightId);
+        if (action.dataset.hotelAction === 'copy-d3') copyD3Hotel();
+      });
+      hotelSearchButton.addEventListener('click', searchHotelPoi);
+      hotelCancelButton.addEventListener('click', closeHotelDialog);
+      hotelPoiResults.addEventListener('click', event => {
+        const candidate = event.target.closest('[data-hotel-poi-index]');
+        if (candidate) chooseHotelPoi(Number(candidate.dataset.hotelPoiIndex));
+      });
+      [hotelNameInput, hotelCityInput].forEach(input => input.addEventListener('input', () => {
+        if (pendingHotelPoi) clearHotelPoiSelection('酒店名称或城市已修改，请重新查询并选择高德 POI。');
+      }));
+      hotelForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const night = hotelNightById.get(hotelEditingNightId);
+        if (!night || !pendingHotelPoi) {
+          setHotelStatus('请先查询并选择准确的高德 POI。');
+          return;
+        }
+        const saved = normalizeHotel({
+          ...pendingHotelPoi,
+          city: hotelCityInput.value.trim(),
+          note: hotelNoteInput.value.trim()
+        }, night.city);
+        if (!saved || !validHotelCoordinates(saved.lng, saved.lat)) {
+          setHotelStatus('选中的 POI 坐标无效，请重新查询。');
+          return;
+        }
+        hotels[hotelEditingNightId] = saved;
+        persistAndRenderHotels();
+        closeHotelDialog();
+      });
+      hotelDialog.addEventListener('cancel', () => { hotelSearchGeneration += 1; });
+      renderHotelCards();
+
       window.focusStop = focusStop;
       window.focusRoute = focusRoute;
+      window.focusHotel = focusHotel;
 
       document.querySelectorAll('.map-focus').forEach(button => {
         button.addEventListener('click', () => focusStop(button.dataset.stop));
